@@ -13,7 +13,7 @@ pipeline {
         }
         stage('translation') {
             steps {
-               projectScanType: fortifyAdvanced(advOptions: '\'"-source" "1.8" "-cp" "WEB-INF/lib/*.jar" "./**/*.java"\''), verbose: true
+               fortifyTranslate addJVMOptions: '', buildID: 'app', debug: true, excludeList: '', logFile: 'translation.log', maxHeap: '', projectScanType: fortifyAdvanced(advOptions: '\'"-source" "1.8" "-cp" "./**/*.jar" "./**/*.java"\''), verbose: true
             }
         }
         stage('scan') {
