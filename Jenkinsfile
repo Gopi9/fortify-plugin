@@ -18,7 +18,7 @@ pipeline {
             steps {
 	      script {
                     path = pwd()
-                    fortifyTranslate addJVMOptions: '', buildID: 'app', debug: true, excludeList: '', logFile: '', maxHeap: '', projectScanType: fortifyOther(otherIncludesList: '"./**/*.java"', otherOptions: '"./**/.jar"'), verbose: true
+                    fortifyTranslate addJVMOptions: '', buildID: 'app', debug: true, excludeList: '', logFile: '', maxHeap: '', projectScanType: fortifyOther(otherIncludesList: '"./**/*"', otherOptions: '"./**/.jar"'), verbose: true
 	      }
 	    }
         }
