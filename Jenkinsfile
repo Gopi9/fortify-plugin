@@ -13,7 +13,7 @@ pipeline {
         }
         stage('translation') {
             steps {
-              fortifyTranslate addJVMOptions: '', buildID: 'app', debug: true, excludeList: '', logFile: 'translation.log', maxHeap: '', projectScanType: fortifyJava(javaAddOptions: '', javaClasspath: '', javaSrcFiles: './**/*.java', javaVersion: '1.8'), verbose: true
+               fortifyTranslate addJVMOptions: '', buildID: '', debug: true, excludeList: '', logFile: '', maxHeap: '', projectScanType: fortifyAdvanced(advOptions: '\'"-source" "1.8" "-cp" "n/target/fortify.jar" "fortify-plugin/src/**/*.java"\''), verbose: true
             }
         }
         stage('scan') {
