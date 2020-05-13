@@ -16,8 +16,12 @@ pipeline {
         }
         stage('translation') {
             steps {
-               fortifyTranslate addJVMOptions: '', buildID: '', debug: true, excludeList: '', logFile: '', maxHeap: '', projectScanType: fortifyAdvanced(advOptions: '\'"-source" "1.8" "-cp" "${workspace}/target/fortify.jar" "./**/*.java"\''), verbose: true
-            }
+	      script {
+                    path = pwd()
+               fortifyTranslate addJVMOptions: '', buildID: '', debug: true, excludeList: '', logFile: '', maxHeap: '', projectScanType: fortifyAdvanced(advOptions: '\'"-source" "1.8" "-cp" "target/fortify.jar" "./**/*.java"\''), verbose: true
+            
+	      }
+	    }
         }
         stage('scan') {
             steps {
