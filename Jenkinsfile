@@ -16,9 +16,11 @@ pipeline {
             parallel {
                 stage('clean') {
                     steps {
+			    script {
 			    BUILDID = 'app'
 			    fortifyClean addJVMOptions: '', buildID: '"${BUILDID}"', logFile: '', maxHeap: ''
-                    }
+			    }
+		    }
                 }
                 stage('translation') {
                     steps {
