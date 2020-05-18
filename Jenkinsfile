@@ -1,9 +1,10 @@
-def BUILDID = "app"
-def JDK_1_8 = '1.8'
+
 pipeline {
     agent any
 	environment {
 		WORKSPACE = pwd()
+		BUILDID = "app"
+		JDK_1_8 = "1.8"
 	}
     stages {
 	    stage('Build') {
