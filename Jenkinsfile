@@ -17,7 +17,7 @@ pipeline {
                 stage('clean') {
                     steps {
 			    script {
-			    BUILDID = 'app'
+			   export BUILDID = 'app'
 			    fortifyClean addJVMOptions: '', buildID: '"${BUILDID}"', logFile: '', maxHeap: ''
 			    }
 		    }
@@ -25,8 +25,8 @@ pipeline {
                 stage('translation') {
                     steps {
 	                    script {
-		            BUILDID = 'app'
-			    JDK_1_8 = '1.8'
+		            export BUILDID = 'app'
+			    export JDK_1_8 = '1.8'
                             path = pwd()
 			    echo "${BUILDID}"
 			    fortifyTranslate addJVMOptions: '', buildID: '"${BUILDID}"', debug: true, excludeList: '', logFile: '', maxHeap: '', projectScanType: fortifyJava(javaAddOptions: '', javaClasspath: '', javaSrcFiles: './**/*.java', javaVersion: '"${JDK_1_8}"'), verbose: true
