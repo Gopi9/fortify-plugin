@@ -23,6 +23,7 @@ pipeline {
                     steps {
 	                    script {
                             path = pwd()
+			    echo "${BUILDID}"
 			    fortifyTranslate addJVMOptions: '', buildID: '${BUILDID}', debug: true, excludeList: '', logFile: '', maxHeap: '', projectScanType: fortifyJava(javaAddOptions: '', javaClasspath: '', javaSrcFiles: './**/*.java', javaVersion: '${JDK_1_8}'), verbose: true
                             //fortifyTranslate addJVMOptions: '', buildID: '${env.BUILDID}', debug: true, excludeList: '', logFile: '', maxHeap: '', projectScanType: fortifyOther(otherIncludesList: '"./**/*"', otherOptions: '"./**/.jar"'), verbose: true
 	                    }
