@@ -16,7 +16,7 @@ pipeline {
             parallel {
                 stage('clean') {
                     steps {
-			    fortifyClean addJVMOptions: '', buildID: '"${BUILDID}"', logFile: '', maxHeap: ''
+			    fortifyClean addJVMOptions: '', buildID: '"${env.BUILDID}"', logFile: '', maxHeap: ''
                     }
                 }
                 stage('translation') {
@@ -24,7 +24,7 @@ pipeline {
 	                    script {
                             path = pwd()
 			    echo "${BUILDID}"
-			    fortifyTranslate addJVMOptions: '', buildID: '"${BUILDID}"', debug: true, excludeList: '', logFile: '', maxHeap: '', projectScanType: fortifyJava(javaAddOptions: '', javaClasspath: '', javaSrcFiles: './**/*.java', javaVersion: '"${JDK_1_8}"'), verbose: true
+			    fortifyTranslate addJVMOptions: '', buildID: '"${env.BUILDID}"', debug: true, excludeList: '', logFile: '', maxHeap: '', projectScanType: fortifyJava(javaAddOptions: '', javaClasspath: '', javaSrcFiles: './**/*.java', javaVersion: '"${env.JDK_1_8}"'), verbose: true
                             //fortifyTranslate addJVMOptions: '', buildID: '${env.BUILDID}', debug: true, excludeList: '', logFile: '', maxHeap: '', projectScanType: fortifyOther(otherIncludesList: '"./**/*"', otherOptions: '"./**/.jar"'), verbose: true
 	                    }
 	                }
