@@ -18,8 +18,7 @@ pipeline {
     }
 	post { 
         always { 
-		build job: 'new', wait: false, parameters: [string(name: 'BRANCH', value: String.valueOf(build-app))]
-
+		build job: 'new', parameters: [[$class: 'StringParameterValue', name: 'BRANCH', value: 'build-app']]
         }
     }
     
