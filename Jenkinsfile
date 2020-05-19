@@ -1,6 +1,9 @@
 
 pipeline {
     agent any
+	parameters {
+		string(defaultValue: "BRANCH", description: 'Which branch?', name: 'build-app')
+	}
 	environment {
 		WORKSPACE = pwd()
 		BUILDID = 'app'
@@ -15,10 +18,8 @@ pipeline {
     }
 	post { 
         always { 
-            build job: 'new'
-		//parameters: [
-		  //   string(name: 'BRANCH', value: build-app.valueOf(BUILD_NUMBER))
-		//]
+		build job: 'new', wait: false, parameters: [string(name: 'BRANCH', value: String.valueOf(build-app))]
+
         }
     }
     
