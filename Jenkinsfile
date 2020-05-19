@@ -16,9 +16,9 @@ pipeline {
 	post { 
         always { 
             build job: 'new',
-		parameters: [
-		     string(name: 'BRANCH', value: build-app.valueOf(BUILD_NUMBER))
-		]
+		//parameters: [
+		  //   string(name: 'BRANCH', value: build-app.valueOf(BUILD_NUMBER))
+		//]
         }
     }
     
