@@ -44,7 +44,7 @@ pipeline {
  }
 	post { 
         always { 
-            def job = build job: 'new'
+            build job: 'new'
         }
         }
     
