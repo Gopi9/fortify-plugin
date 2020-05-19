@@ -19,7 +19,7 @@ pipeline {
 	post { 
         always { 
 		script{
-                    if( BUILD SUCCESS ){
+                    if( BUILD (SUCCESS) ){
 		    build job: 'new', parameters: [[$class: 'StringParameterValue', name: 'BRANCH', value: 'build-app']]
 		    }
 		}
