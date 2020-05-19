@@ -45,6 +45,9 @@ pipeline {
 	post { 
         always { 
             build job: 'new'
+	    parameters: [
+               string(name: 'BRANCH', value: build-app)
+            ]
         }
         }
     
