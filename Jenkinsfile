@@ -15,6 +15,7 @@ pipeline {
                     def Organization = repoUrl.tokenize('/')[2]
                     def Repository = repoUrl.tokenize('/')[3]
                     //Repository = Repository.substring(0, Repository.lastIndexOf('.')) //Remove .git
+                    echo "The project is: ${repoUrl}"
                     echo "The project is: ${Organization}"
                     echo "The repository is: ${Repository}"
                     releaseNum = "${env.BRANCH_NAME}".replaceFirst("release/", "")
