@@ -1,29 +1,32 @@
-
 pipeline {
-    agent any
-	parameters {
-		string(defaultValue: "BRANCH", description: 'Which branch?', name: 'build-app')
-	}
-	environment {
-		WORKSPACE = pwd()
-		BUILDID = 'app'
-		JDK_1_8 = '1.8'
-	}
+
+    
+    agent {
+        label 'master'
+    }
+    
+    options { timestamps () }
+
     stages {
-	    stage('Build') {
+        stage('Trigger Fortify') {
             steps {
-              sh "mvn clean package"
+                script {
+                    def repoUrl = GIT_URL
+                    def Organization = repoUrl.tokenize('/')[2]
+                    def Repository = repoUrl.tokenize('/')[3]
+                    Repository = Repository.substring(0, Repository.lastIndexOf('.')) //Remove .git
+                    echo "The project is: ${Organization}"
+                    echo "The repository is: ${Repository}"
+                    releaseNum = "${env.BRANCH_NAME}".replaceFirst("release/", "")
+                    echo "The repository is: ${releaseNum}" {
+                        build   job: 'job3',
+                                parameters: [[$class: 'StringParameterValue', name: 'Branch', value: "${releaseNum}"],
+                                            [$class: 'StringParameterValue', name: 'Organization', value: "${Organization}"],
+                                            [$class: 'StringParameterValue', name: 'Repository', value: "$Repository"]],
+                                            wait: false
+                    }
+                }
             }
         }
     }
-	post { 
-        always { 
-		script{
-                    if( BUILD (SUCCESS) ){
-		    build job: 'new', parameters: [[$class: 'StringParameterValue', name: 'BRANCH', value: 'build-app']]
-		    }
-		}
-        }
-    }
-    
-}
+}    
